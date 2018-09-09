@@ -11,7 +11,9 @@ class _FabState extends State<Fab> with SingleTickerProviderStateMixin{
   AnimationController _animationController;
   Animation<Color> _animateColor;
   Animation<double> _animationIcon;
+  Animation<double> _translateButton;
   Curve _curve = Curves.easeOut;
+  double _fabHeight = 56.0;
 
   @override
   void initState() {
@@ -26,6 +28,14 @@ class _FabState extends State<Fab> with SingleTickerProviderStateMixin{
     ).animate(CurvedAnimation(parent: _animationController, curve: Interval(
       0.00,
       1.00,
+      curve: _curve
+    )));
+    _translateButton = Tween<double>(
+      begin: _fabHeight,
+      end: -10.0
+    ).animate(CurvedAnimation(parent: _animationController, curve: Interval(
+      0.00,
+      0.75,
       curve: _curve
     )));
     super.initState();
@@ -45,14 +55,50 @@ class _FabState extends State<Fab> with SingleTickerProviderStateMixin{
   }
 
   Widget toggle () {
-    return FloatingActionButton(
-        onPressed: animate,
-        backgroundColor: _animateColor.value,
-        tooltip: 'toggle',
-        child: AnimatedIcon(
-          icon: AnimatedIcons.menu_close,
-          progress: _animationIcon,
-        )
+    return Container(
+      child: FloatingActionButton(
+        heroTag: 'toggle',
+          onPressed: animate,
+          backgroundColor: _animateColor.value,
+          tooltip: 'toggle',
+          child: AnimatedIcon(
+            icon: AnimatedIcons.menu_close,
+            progress: _animationIcon,
+          )
+      ),
+    );
+  }
+
+  Widget add () {
+    return Container(
+      child: FloatingActionButton(
+        heroTag: 'add',
+        onPressed: null,
+        tooltip: 'add',
+        child: Icon(Icons.add),
+      ),
+    );
+  }
+
+  Widget image () {
+    return Container(
+      child: FloatingActionButton(
+        heroTag: 'image',
+        onPressed: null,
+        tooltip: 'image',
+        child: Icon(Icons.image),
+      ),
+    );
+  }
+
+  Widget label () {
+    return Container(
+      child: FloatingActionButton(
+        heroTag: 'label',
+        onPressed: null,
+        tooltip: 'label',
+        child: Icon(Icons.label),
+      ),
     );
   }
 
@@ -68,6 +114,18 @@ class _FabState extends State<Fab> with SingleTickerProviderStateMixin{
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
+          Transform(
+            transform: Matrix4.translationValues(0.0, _translateButton.value * 3, 0.0),
+            child: add(),
+          ),
+          Transform(
+            transform: Matrix4.translationValues(0.0, _translateButton.value * 2, 0.0),
+            child: image(),
+          ),
+          Transform(
+            transform: Matrix4.translationValues(0.0, _translateButton.value, 0.0),
+            child: label(),
+          ),
           toggle()
         ],
       ),

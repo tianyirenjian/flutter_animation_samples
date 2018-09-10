@@ -46,9 +46,7 @@ class _BasicState extends State<Basic> with TickerProviderStateMixin{
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Icon(Icons.arrow_back),
-                  Padding(padding: EdgeInsets.only(left: 8.0)),
-                  Text('Swipe it', style: TextStyle(
+                  Text('Flashing text!', style: TextStyle(
                       fontSize: 16.0,
                       color: Colors.blueGrey
                   ),)

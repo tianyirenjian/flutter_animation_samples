@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
 class Home extends StatelessWidget {
   final samples = {
     'FAB': '/fab',
-    'basic animations': '/basic'
+    'basic animation': '/basic'
   };
   @override
   Widget build(BuildContext context) {

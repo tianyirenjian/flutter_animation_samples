@@ -50,6 +50,8 @@ class _MediumState extends State<Medium> with TickerProviderStateMixin{
   dispose () {
     _scoreInAnimationController.dispose();
     _scoreOutAnimationController.dispose();
+    _scoreSizeAnimationController.dispose();
+    _sparklesAnimationController.dispose();
     super.dispose();
   }
 

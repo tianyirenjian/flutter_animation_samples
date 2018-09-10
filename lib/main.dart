@@ -1,7 +1,7 @@
-// from https://medium.com/@agungsurya/create-a-simple-animated-floatingactionbutton-in-flutter-2d24f37cfbcc
 import 'package:flutter/material.dart';
 import 'package:flutter_animations/basic.dart';
 import 'package:flutter_animations/fab.dart';
+import 'package:flutter_animations/medium.dart';
 
 void main() => runApp(new MyApp());
 
@@ -18,7 +18,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => Home(),
         '/fab': (context) => Fab(),
-        '/basic': (context) => Basic()
+        '/basic': (context) => Basic(),
+        '/medium': (context) => Medium()
       },
       debugShowCheckedModeBanner: false,
     );
@@ -28,7 +29,8 @@ class MyApp extends StatelessWidget {
 class Home extends StatelessWidget {
   final samples = {
     'FAB': '/fab',
-    'basic animation': '/basic'
+    'basic animation': '/basic',
+    'medium\'s clap': '/medium'
   };
   @override
   Widget build(BuildContext context) {

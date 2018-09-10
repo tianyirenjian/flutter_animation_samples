@@ -1,5 +1,6 @@
+// from https://proandroiddev.com/flutter-animation-creating-mediums-clap-animation-in-flutter-3168f047421e
 import 'dart:async';
-
+import 'dart:math';
 import 'package:flutter/material.dart';
 
 class Medium extends StatefulWidget {
@@ -12,9 +13,11 @@ class _MediumState extends State<Medium> with TickerProviderStateMixin{
   final duration = Duration(milliseconds: 400);
   Timer holdTimer, scoreOutETA;
   AnimationController _scoreInAnimationController, _scoreOutAnimationController,
-    _scoreSizeAnimationController;
-  Animation<double> _scoreOutPosition;
+    _scoreSizeAnimationController, _sparklesAnimationController;
+  Animation<double> _scoreOutPosition, _sparkles;
   ScoreWidgetStatus _scoreWidgetStatus = ScoreWidgetStatus.HIDDEN;
+  double _sparkAngle = 0.0;
+  Random random;
 
   initState () {
     _scoreInAnimationController = AnimationController(vsync: this, duration: Duration(milliseconds: 150))
@@ -37,6 +40,10 @@ class _MediumState extends State<Medium> with TickerProviderStateMixin{
         _scoreSizeAnimationController.reverse();
       }
     });
+    _sparklesAnimationController = AnimationController(vsync: this, duration: duration);
+    _sparkles = CurvedAnimation(parent: _sparklesAnimationController, curve: Curves.easeIn);
+    _sparkles.addListener((){setState((){});});
+    random = Random();
     super.initState();
   }
 
@@ -48,8 +55,10 @@ class _MediumState extends State<Medium> with TickerProviderStateMixin{
 
   increment (Timer t) {
     _scoreSizeAnimationController.forward(from: 0.0);
+    _sparklesAnimationController.forward(from: 0.0);
     setState(() {
       _counter ++;
+      _sparkAngle = random.nextDouble() * (2 * pi);
     });
   }
 
@@ -94,25 +103,52 @@ class _MediumState extends State<Medium> with TickerProviderStateMixin{
         scoreOpacity = 1 - _scoreOutAnimationController.value;
         scorePosition = _scoreOutPosition.value;
     }
-    return Positioned(child: Opacity(
+
+    var firstAngle = _sparkAngle;
+    var sparkRadius = _sparklesAnimationController.value * 50;
+    var sparkOpacity = 1 - _sparkles.value;
+    var stackChildren = <Widget>[];
+    for (var i = 0; i < 5; i ++) {
+      var currentAngle = firstAngle + (2 * pi / 5 * i);
+      var sparkleWidget = Positioned(child: Transform.rotate(
+          angle: currentAngle - pi / 2,
+          child: Opacity(opacity: sparkOpacity, child: Image.asset(
+            'images/sparkles.png',
+            width: 14.0,
+            height: 14.0,
+          )),
+        ),
+        left: sparkRadius * cos(currentAngle) + 20,
+        top: sparkRadius * sin(currentAngle) + 20
+      );
+      stackChildren.add(sparkleWidget);
+    }
+
+    stackChildren.add(Opacity(
       opacity: scoreOpacity,
       child: Container(
         height: 50.0 + extraSize,
         width: 50.0 + extraSize,
         decoration: ShapeDecoration(
           shape: CircleBorder(
-            side: BorderSide.none
+              side: BorderSide.none
           ),
           color: Colors.pink,
         ),
         child: Center(
           child: Text('+$_counter', style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 15.0
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 15.0
           )),
         ),
       ),
+    ));
+
+    return Positioned(child: Stack(
+      alignment: FractionalOffset.center,
+      overflow: Overflow.visible,
+      children: stackChildren,
     ), bottom: scorePosition);
   }
 

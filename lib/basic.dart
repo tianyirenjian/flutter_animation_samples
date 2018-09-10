@@ -8,7 +8,6 @@ class Basic extends StatefulWidget {
 class _BasicState extends State<Basic> with TickerProviderStateMixin{
   AnimationController _opacityController;
   Animation<double> _opacity;
-  bool _showHint = false;
 
   @override
   void initState() {
@@ -41,7 +40,7 @@ class _BasicState extends State<Basic> with TickerProviderStateMixin{
         child: Stack(
           alignment: Alignment.center,
           children: <Widget>[
-            !_showHint ? FadeTransition(
+            FadeTransition(
               opacity: _opacity,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -52,7 +51,7 @@ class _BasicState extends State<Basic> with TickerProviderStateMixin{
                   ),)
                 ],
               ),
-            ) : Container()
+            )
           ],
         ),
       ),

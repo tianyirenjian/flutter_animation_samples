@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animations/basic.dart';
+import 'package:flutter_animations/color_change.dart';
 import 'package:flutter_animations/fab.dart';
 import 'package:flutter_animations/medium.dart';
 import 'package:flutter_animations/value_change.dart';
@@ -21,7 +22,8 @@ class MyApp extends StatelessWidget {
         '/fab': (context) => Fab(),
         '/basic': (context) => Basic(),
         '/medium': (context) => Medium(),
-        '/value_change': (context) => ValueChange()
+        '/value_change': (context) => ValueChange(),
+        '/color_change': (context) => ColorChange()
       },
       debugShowCheckedModeBanner: false,
     );
@@ -33,7 +35,8 @@ class Home extends StatelessWidget {
     'FAB': '/fab',
     'basic animation': '/basic',
     'medium\'s clap': '/medium',
-    'value change': '/value_change'
+    'value change': '/value_change',
+    'color change': '/color_change'
   };
   @override
   Widget build(BuildContext context) {

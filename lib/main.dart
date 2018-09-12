@@ -33,10 +33,10 @@ class MyApp extends StatelessWidget {
 class Home extends StatelessWidget {
   final samples = {
     'FAB': '/fab',
-    'basic animation': '/basic',
-    'medium\'s clap': '/medium',
-    'value change': '/value_change',
-    'color change': '/color_change'
+    'Basic animation': '/basic',
+    'Medium\'s clap': '/medium',
+    'Value change': '/value_change',
+    'Color change': '/color_change'
   };
   @override
   Widget build(BuildContext context) {

@@ -31,7 +31,7 @@ class _HeroAnimationState extends State<HeroAnimation> {
       autofocus: false,
       initialValue: 'youemail@xxx.com',
       decoration: InputDecoration(
-        hintText: 'password',
+        hintText: 'Email',
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(32.0)
@@ -74,10 +74,9 @@ class _HeroAnimationState extends State<HeroAnimation> {
       appBar: AppBar(
         title: Text('Hero animation'),
       ),
-      backgroundColor: Colors.white,
       body: Center(
-        child: Padding(padding: EdgeInsets.all(24.0), child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: ListView(
+          padding: EdgeInsets.only(left: 24.0, right: 24.0, top: 100.0),
           children: <Widget>[
             logo,
             SizedBox(height: 48.0,),
@@ -86,8 +85,8 @@ class _HeroAnimationState extends State<HeroAnimation> {
             password,
             SizedBox(height: 8.0,),
             loginButton
-          ]
-        ),),
+          ],
+        )
       )
     );
   }

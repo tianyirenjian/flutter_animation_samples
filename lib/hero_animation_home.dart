@@ -4,15 +4,21 @@ import 'package:flutter/material.dart';
 class HeroAnimationHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final hero = Hero(
-      tag: 'hero',
-      child: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: CircleAvatar(
-          radius: 72.0,
-          backgroundImage: AssetImage('images/avatar.jpg'),
+    final hero = Row(
+      children: <Widget>[
+        Expanded(child: Container()),
+        Hero(
+          tag: 'hero',
+          child: Padding(
+            padding: EdgeInsets.all(16.0),
+            child: CircleAvatar(
+              radius: 72.0,
+              backgroundImage: AssetImage('images/avatar.jpg'),
+            ),
+          ),
         ),
-      ),
+        Expanded(child: Container())
+      ],
     );
     final welcome = Padding(
       padding: EdgeInsets.all(8.0),
@@ -28,13 +34,13 @@ class HeroAnimationHome extends StatelessWidget {
     );
     final body = Container(
       width: MediaQuery.of(context).size.width,
-      padding: EdgeInsets.all(28.0),
+      padding: EdgeInsets.symmetric(horizontal: 28.0),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [Colors.blue, Colors.lightBlueAccent]
         )
       ),
-      child: Column(
+      child: ListView(
         children: <Widget>[
           hero,
           welcome,

@@ -43,6 +43,8 @@ flutter:
   assets:
     - images/clap.png
     - images/sparkles.png
+    - images/logo.jpg
+    - images/avatar.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.

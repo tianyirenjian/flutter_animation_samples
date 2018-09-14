@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animations/hero_animation.dart';
-import 'package:flutter_animations/basic.dart';
-import 'package:flutter_animations/color_change.dart';
-import 'package:flutter_animations/fab.dart';
-import 'package:flutter_animations/hero_animation_home.dart';
-import 'package:flutter_animations/medium.dart';
-import 'package:flutter_animations/value_change.dart';
+import 'package:flutter_animations/src/basic.dart';
+import 'package:flutter_animations/src/color_change.dart';
+import 'package:flutter_animations/src/fab.dart';
+import 'package:flutter_animations/src/hero_animation.dart';
+import 'package:flutter_animations/src/hero_animation_home.dart';
+import 'package:flutter_animations/src/medium.dart';
+import 'package:flutter_animations/src/value_change.dart';
 
 void main() => runApp(new MyApp());
 
@@ -21,11 +21,11 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => Home(),
+        '/value_change': (context) => ValueChange(),
+        '/color_change': (context) => ColorChange(),
         '/fab': (context) => Fab(),
         '/basic': (context) => Basic(),
         '/medium': (context) => Medium(),
-        '/value_change': (context) => ValueChange(),
-        '/color_change': (context) => ColorChange(),
         '/hero_animation': (context) => HeroAnimation(),
         '/hero_animation_home': (context) => HeroAnimationHome()
       },
@@ -36,11 +36,11 @@ class MyApp extends StatelessWidget {
 
 class Home extends StatelessWidget {
   final samples = {
-    'FAB': '/fab',
-    'Basic animation': '/basic',
-    'Medium\'s clap': '/medium',
     'Value change': '/value_change',
     'Color change': '/color_change',
+    'Floating action button': '/fab',
+    'Basic animation': '/basic',
+    'Medium\'s clap': '/medium',
     'Hero animation': '/hero_animation'
   };
   @override

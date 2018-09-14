@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animations/src/basic.dart';
 import 'package:flutter_animations/src/color_change.dart';
 import 'package:flutter_animations/src/fab.dart';
+import 'package:flutter_animations/src/gridview_hero.dart';
 import 'package:flutter_animations/src/hero_animation.dart';
 import 'package:flutter_animations/src/hero_animation_home.dart';
 import 'package:flutter_animations/src/medium.dart';
@@ -27,7 +28,8 @@ class MyApp extends StatelessWidget {
         '/basic': (context) => Basic(),
         '/medium': (context) => Medium(),
         '/hero_animation': (context) => HeroAnimation(),
-        '/hero_animation_home': (context) => HeroAnimationHome()
+        '/hero_animation_home': (context) => HeroAnimationHome(),
+        '/gridview_hero': (context) => GridviewHero()
       },
       debugShowCheckedModeBanner: false,
     );
@@ -41,7 +43,8 @@ class Home extends StatelessWidget {
     'Floating action button': '/fab',
     'Basic animation': '/basic',
     'Medium\'s clap': '/medium',
-    'Hero animation': '/hero_animation'
+    'Hero animation': '/hero_animation',
+    'Hero animation 2': '/gridview_hero'
   };
   @override
   Widget build(BuildContext context) {
